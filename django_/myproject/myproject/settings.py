@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-from . import my_settings
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure--5=juvr0&wqjww27i=2gcjp@p*v!72k-664no5p06aep!30$-2')
+SECRET_KEY = os.environ.get['DJANGO_SECRET_KEY']
 
-import dj_database_url
-
-DATABASES = my_settings.DATABASES
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ['DATABASE_NAME'],                       #위에서 생성한 DB이름 사용
+        'USER': os.environ['DATABASE_USER'],                         #root 유저(기본값) 사용
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': '3306',                         #mysql 설치 시에 설정한 포트번호
+    }
+}
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
@@ -35,7 +42,7 @@ DATABASES['default'].update(db_from_env)
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
