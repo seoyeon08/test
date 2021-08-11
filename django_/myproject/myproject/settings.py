@@ -22,15 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get['DJANGO_SECRET_KEY']
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get['DATABASE_NAME'],                       #위에서 생성한 DB이름 사용
-        'USER': os.environ.get['DATABASE_USER'],                         #root 유저(기본값) 사용
-        'PASSWORD': os.environ.get['DATABASE_PASSWORD'],
-        'HOST': os.environ.get['DATABASE_HOST'],
+        'NAME': os.environ.get('DATABASE_NAME'),                       #위에서 생성한 DB이름 사용
+        'USER': os.environ.get('DATABASE_USER'),                         #root 유저(기본값) 사용
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
         'PORT': '3306',                         #mysql 설치 시에 설정한 포트번호
     }
 }
