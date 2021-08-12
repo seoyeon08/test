@@ -1,1 +1,1 @@
-web: gunicorn --chdir django_ myproject myproject.wsgi
+web: gunicorn --preload --chdir django_ myproject myproject.wsgi
