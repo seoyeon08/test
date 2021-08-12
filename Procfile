@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi:application --log-file -
+web: gunicorn --chdir django_ myproject myproject.wsgi:myapp --log-file -
