@@ -10,13 +10,13 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 import os, sys
 
 from django.core.wsgi import get_wsgi_application
+from myproject.wsgi import MyProjectApplication
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_/myproject/myproject.settings')
 
-application = get_wsgi_application()
+application = get_wsgi_application(MyProjectApplication)
 
 sys.path.append('/home/django_/myproject')
 sys.path.append('/home/django_/myproject/myproject')
 
-from myproject.wsgi import MyProjectApplication
 application = MyProjectApplication(application)
