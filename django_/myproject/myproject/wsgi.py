@@ -17,3 +17,6 @@ application = get_wsgi_application()
 
 sys.path.append('/home/django_/myproject')
 sys.path.append('/home/django_/myproject/myproject')
+
+from myproject.wsgi import MyProjectApplication
+application = MyProjectApplication(application)
