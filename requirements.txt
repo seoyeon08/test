@@ -21,3 +21,4 @@ sqlparse==0.4.1
 virtualenv==20.7.2
 virtualenv-clone==0.5.6
 whitenoise==5.3.0
+application = myproject.application right under application = dash.Dash()
