@@ -12,7 +12,7 @@ import os, sys
 from django.core.wsgi import get_wsgi_application
 # from myproject.wsgi import MyProjectApplication
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_/myproject/myproject.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_/myproject/myproject.settings.dev')
 
 application = get_wsgi_application()
 
