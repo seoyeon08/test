@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import django_heroku
 from pathlib import Path
 import os
+from decouple import config
 
 
 ENV = os.getenv('ENV')
@@ -27,33 +28,50 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-DATABASE_URL = os.environ.get('CLEARDB_DATABASE_URL')
-
+DATABASE_URL = config('CLEARDB_DATABASE_URL')
+# KEY = config('DATABASES_URL')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DATABASE_NAME'),                       #위에서 생성한 DB이름 사용
-        'USER': os.environ.get('DATABASE_USER'),                         #root 유저(기본값) 사용
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': os.environ.get('DATABASE_HOST'),
-        'PORT': '3306',                         #mysql 설치 시에 설정한 포트번호
+        'ENGINE': config('ENGINE'),
+        'DATABASE_NAME': config('DATABASE_NAME'),
+        'DATABASE_USER': config('DATABASE_USER'),                         #root 유저(기본값) 사용
+        'DATABASE_PASSWORD': config('DATABASE_PASSWORD'),
+        'DATABASE_HOST': config('DATABASE_HOST'),
+        'PORT': '3306', 
     }
 }
-
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
-
-
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = True
-if ENV == 'PROD':
-    DEBUG = False
-# DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
-
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+# # cast=bool 이 없으면 False 를 문자열로 인식하게됨.
+# DEBUG = env('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['*']
+
+
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+# print(SECRET_KEY)
+# DATABASE_URL = os.environ.get('CLEARDB_DATABASE_URL')
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ.get('DATABASE_NAME'),                       #위에서 생성한 DB이름 사용
+#         'USER': os.environ.get('DATABASE_USER'),                         #root 유저(기본값) 사용
+#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+#         'HOST': os.environ.get('DATABASE_HOST'),
+#         'PORT': '3306',                         #mysql 설치 시에 설정한 포트번호
+#     }
+# }
+
+# # SECURITY WARNING: don't run with debug turned on in production!
+# # DEBUG = True
+# DEBUG = True
+# if ENV == 'PROD':
+#     DEBUG = False
+# # DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
+
+# ALLOWED_HOSTS = ['*']
 # .herokuapp.com', '127.0.0.1
 
 # Application definition
