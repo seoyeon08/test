@@ -10,16 +10,16 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 import os, sys
 
 from django.core.wsgi import get_wsgi_application
-# from myproject.wsgi import MyProjectApplication
+from myproject.wsgi import MyProjectApplication
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_/myproject/myproject.settings.dev')
 
 application = get_wsgi_application()
 
-# sys.path.append('/home/django_/myproject')
-# sys.path.append('/home/django_/myproject/myproject')
+sys.path.append('/home/django_/myproject')
+sys.path.append('/home/django_/myproject/myproject')
 
-# application = MyProjectApplication(application)
+application = MyProjectApplication(application)
 
 from whitenoise.django import DjangoWhiteNoise
 application = DjangoWhiteNoise(application)
