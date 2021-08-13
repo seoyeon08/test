@@ -1,1 +1,1 @@
-web: gunicorn --chdir django_ myproject myproject.wsgi
+gunicorn --chdir django_ myproject myproject.wsgi
