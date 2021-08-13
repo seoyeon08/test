@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-DATABASE_URL = config('CLEARDB_DATABASE_URL')
+# DATABASE_URL = config('CLEARDB_DATABASE_URL')
 # KEY = config('DATABASES_URL')
 DATABASES = {
     'default': {
