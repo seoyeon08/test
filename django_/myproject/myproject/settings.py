@@ -29,6 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
+DATABASE_URL = os.environ.get('CLEARDB_DATABASE_URL')
 
 DATABASES = {
     'default': {
